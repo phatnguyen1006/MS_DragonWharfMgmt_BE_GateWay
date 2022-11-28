@@ -11,6 +11,7 @@ app.use(express.json());
 const PORT = process.env.PORT || 8000;
 
 app.use('/building', proxy(BUILDING_NODE_URL));
+app.use('/management', proxy(MANAGEMENT_NODE_URL));
 
 app.post("/login", (req, res, next) => {
     console.log(req.body);
@@ -18,11 +19,11 @@ app.post("/login", (req, res, next) => {
     if (req.body.password != "tlinh") return res.status(401).json({ "success": false, "message": "Incorrect password" });
 
     return res.status(200).json({ "success": true, "accessToken": "This is accessToken" });
-})
+});
 
-app.use('/', proxy(MANAGEMENT_NODE_URL));
-
-
+app.get("/", (req, res, next) => {
+    return res.status(200).json({ "success": true, "message": "Hi there! We are GIS team"});
+});
 
 app.listen(PORT, () => {
     console.log('Gateway is Listening to Port 8000')
