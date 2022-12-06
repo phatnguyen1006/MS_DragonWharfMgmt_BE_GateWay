@@ -27,4 +27,4 @@ app.get("/", (req, res, next) => {
 
 app.listen(PORT, () => {
     console.log('Gateway is Listening to Port 8000')
-});
+}).setTimeout(60*1000);
