@@ -13,14 +13,6 @@ const PORT = process.env.PORT || 8000;
 app.use('/building', proxy(BUILDING_NODE_URL));
 app.use('/management', proxy(MANAGEMENT_NODE_URL));
 
-app.post("/login", (req, res, next) => {
-    console.log(req.body);
-    if (req.body.username != "tlinh") return res.status(401).json({ "success": false, "message": "Can not find username" });
-    if (req.body.password != "tlinh") return res.status(401).json({ "success": false, "message": "Incorrect password" });
-
-    return res.status(200).json({ "success": true, "accessToken": "This is accessToken" });
-});
-
 app.get("/", (req, res, next) => {
     return res.status(200).json({ "success": true, "message": "Hi there! We are GIS team"});
 });
