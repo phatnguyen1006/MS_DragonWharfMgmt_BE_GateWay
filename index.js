@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const proxy = require('express-http-proxy');
-const { BUILDING_NODE_URL, MANAGEMENT_NODE_URL } = require("./constants");
+const { BUILDING_NODE_URL, MANAGEMENT_NODE_URL, STATUE_NODE_URL } = require("./constants");
 
 const app = express();
 
@@ -12,6 +12,7 @@ const PORT = process.env.PORT || 8000;
 
 app.use('/building', proxy(BUILDING_NODE_URL));
 app.use('/management', proxy(MANAGEMENT_NODE_URL));
+app.use('/management', proxy(STATUE_NODE_URL));
 
 app.get("/", (req, res, next) => {
     return res.status(200).json({ "success": true, "message": "Hi there! We are GIS team"});
