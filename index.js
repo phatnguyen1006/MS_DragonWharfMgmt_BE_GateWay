@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 8000;
 
 app.use('/building', proxy(BUILDING_NODE_URL));
 app.use('/management', proxy(MANAGEMENT_NODE_URL));
-app.use('/management', proxy(STATUE_NODE_URL));
+app.use('/statue', proxy(STATUE_NODE_URL));
 
 app.get("/", (req, res, next) => {
     return res.status(200).json({ "success": true, "message": "Hi there! We are GIS team"});
